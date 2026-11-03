@@ -31,7 +31,8 @@ export function buildRlEmbed() {
   const create = () => {
     if (iframe) return;
     iframe = document.createElement('iframe');
-    iframe.src = `${site.rl.path}?embed=1&lang=${getLang()}&theme=${getTheme()}`;
+    const mediaRevision = import.meta.env.DEV ? `&mediaRevision=${Date.now()}` : '';
+    iframe.src = `${site.rl.path}?embed=1&lang=${getLang()}&theme=${getTheme()}${mediaRevision}`;
     iframe.setAttribute('allow', 'autoplay');
     iframe.setAttribute('loading', 'lazy');
     iframe.title = t('rl.iframeTitle');

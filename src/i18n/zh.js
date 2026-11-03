@@ -629,20 +629,17 @@ export default {
     title: 'Diffusion-RL',
     lede:
       '通过强化学习优化 X-World 自身，提升生成画面质量与自车运动对给定条件的遵循。',
-    interactionHint: '左侧 GT、Base、RL 以同步帧叠层展开，右侧点云结果展示同一时刻的对比。',
+    interactionHint: '左侧 Base、GT、RL 以同步帧叠层展开，右侧点云结果展示同一时刻的对比。',
     summary: '联合优化运动一致性与画面质量；这些示例用于定性对比。',
     comparedTitle: '对比对象',
     compared: 'Base（第 0 次迭代，RL 之前）与 iter150（第 150 次迭代的 RL checkpoint），在同一片段、同一随机种子下生成。',
-    trajTitle: '轨迹含义',
-    traj:
-      'GT 为真值参考；Base 与 iter150 分别对应两段生成视频。每条轨迹都是由已有 IDM 动作缓存、从车辆原点在 BEV 中连续积分得到的，并非新计算的评分。',
     scope:
       '为定性说明而选取的样本，不代表全量 RL 评估结论。',
     frameTitle: '交互对比',
     open: '独立打开',
     loading: '正在加载对比组件…',
     error: '对比组件无法在此加载。',
-    iframeTitle: 'Diffusion-RL：GT、Base、RL 与点云结果同步对比',
+    iframeTitle: 'Diffusion-RL：Base、GT、RL 与点云结果同步对比',
     distinctTitle: '与闭环策略 RL 不同',
     distinct: '本节优化的是世界模型本身。把 X-World 作为环境、在闭环中训练驾驶策略，是另一项应用。',
   },

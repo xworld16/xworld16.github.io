@@ -634,20 +634,17 @@ export default {
     title: 'Diffusion-RL',
     lede:
       'Reinforcement learning refines X-World itself, improving visual quality and ego-motion adherence.',
-    interactionHint: 'GT, Base and RL unfold as synchronized frame decks on the left; the point-cloud result on the right follows the same moment.',
+    interactionHint: 'Base, GT and RL unfold as synchronized frame decks on the left; the point-cloud result on the right follows the same moment.',
     summary: 'Motion consistency and visual quality are optimized together. These selected examples provide a qualitative comparison.',
     comparedTitle: 'What is compared',
     compared: 'Base (iteration 0, before RL) and iter150 (RL checkpoint at iteration 150), generated for the same clip with the same seed.',
-    trajTitle: 'What the trajectories are',
-    traj:
-      'GT is the ground-truth reference; Base and iter150 belong to the two generated videos. Each trajectory is a continuous BEV integration from the vehicle origin of an existing IDM action cache — not a newly computed score.',
     scope:
       'Selected samples for qualitative illustration — not a full RL evaluation.',
     frameTitle: 'Interactive comparison',
     open: 'Open standalone',
     loading: 'Loading comparison…',
     error: 'The comparison could not be loaded here.',
-    iframeTitle: 'Diffusion-RL: synchronized GT, Base, RL and point-cloud results',
+    iframeTitle: 'Diffusion-RL: synchronized Base, GT, RL and point-cloud results',
     distinctTitle: 'Not the same as closed-loop policy RL',
     distinct:
       'This section improves the world model itself. Using X-World as an environment to train a driving policy in closed loop is a separate application.',

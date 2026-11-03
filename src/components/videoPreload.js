@@ -41,6 +41,31 @@ function foreground(host, sources) {
 }
 
 export async function startVideoPreload() {
+  // A same-name media replacement must be visible immediately during local
+  // editing. Retire only this app's worker/cache; keep production preloading.
+  if (import.meta.env.DEV) {
+    if (!('serviceWorker' in navigator)) return;
+    const workerUrl = new URL('./media-cache.js', document.baseURI);
+    const ownsWorker = (worker) => {
+      if (!worker) return false;
+      const url = new URL(worker.scriptURL);
+      return url.origin === workerUrl.origin && url.pathname === workerUrl.pathname;
+    };
+    const wasControlled = ownsWorker(navigator.serviceWorker.controller);
+    const registrations = await navigator.serviceWorker.getRegistrations();
+    await Promise.all(registrations
+      .filter(registration => [registration.active, registration.waiting, registration.installing].some(ownsWorker))
+      .map(registration => registration.unregister()));
+    if (window.caches) {
+      await Promise.all((await caches.keys())
+        .filter(name => name.startsWith('xworld-video-'))
+        .map(name => caches.delete(name)));
+    }
+    // unregister() leaves existing players controlled until navigation. One
+    // reload discards their old buffers and starts an uncontrolled dev page.
+    if (wasControlled) location.reload();
+    return;
+  }
   if (!('serviceWorker' in navigator) || !window.caches || navigator.connection?.saveData) return;
   await navigator.serviceWorker.register('./media-cache.js?v=' + __MEDIA_BUILD__);
   await navigator.serviceWorker.ready;
