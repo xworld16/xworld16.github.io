@@ -1,0 +1,47 @@
+/* Live reference deck; original composite's baked reference area is cropped out. */
+.reference-strip{position:relative;width:100%;aspect-ratio:1920/318;overflow:hidden;background:#fff;touch-action:pan-y}
+.reference-plane{position:absolute;top:0;left:0;width:1920px;height:318px;transform-origin:0 0}
+.reference-axis{position:absolute;left:32px;top:44px;width:1856px;height:1px;background:#dce7e7}
+.reference-tick{position:absolute;bottom:13px;transform:translateX(-50%);font-size:15px;color:#899a9e;font-variant-numeric:tabular-nums;white-space:nowrap}
+.reference-tick.first{transform:none}.reference-tick.last{transform:translateX(-100%)}
+.reference-cursor{position:absolute;top:-3px;width:7px;height:7px;border-radius:50%;background:#3d9591;transform:translateX(-50%);box-shadow:0 0 0 5px #3d95910d}
+.ref-card{position:absolute;left:0;top:0;transform-origin:0 0;border:0;padding:0;background:transparent;overflow:hidden;border-radius:19px;box-shadow:0 10px 26px -14px #183e4359;will-change:transform,opacity;cursor:ew-resize}
+.ref-card img{width:100%;height:100%;object-fit:contain;display:block;border-radius:19px;mask-image:linear-gradient(90deg,transparent,#000 var(--feather),#000 calc(100% - var(--feather)),transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 var(--feather),#000 calc(100% - var(--feather)),transparent)}
+.ref-badge{position:absolute;top:14px;left:16px;border-radius:20px;background:#246a6ad9;color:#fff;padding:8px 12px;font-size:13px;font-weight:600;letter-spacing:.2px;pointer-events:none}
+.camera-viewport{position:relative;width:100%;aspect-ratio:1920/588;overflow:hidden;background:white}
+.camera-viewport video{position:absolute;top:0;left:0;width:100%;height:auto;max-width:none;transform:translateY(-36.637931%);border-radius:0}
+@media(prefers-reduced-motion:reduce){.ref-card{will-change:auto}}
+
+.reference-label{position:absolute;z-index:2000;pointer-events:none;white-space:nowrap;border-radius:16px;background:#246a6af2;color:#fff;padding:8px 12px;font:600 13px Arial,Helvetica,sans-serif;letter-spacing:.2px;box-shadow:0 2px 8px #153b3c16}
+
+/* Opaque backing prevents dozens of translucent frames from ghosting together. */
+.ref-card{background:#fff}
+.ref-card img{backface-visibility:hidden}
+.reference-label[hidden]{display:none}
+
+.scrub-canvas{position:absolute;inset:0;width:100%;height:100%;display:block;opacity:0;pointer-events:none}
+.scrub-canvas.visible{opacity:1}
+
+.camera-label-plane{position:absolute;top:0;left:0;width:1920px;height:588px;transform-origin:0 0;z-index:5;pointer-events:none}
+.camera-name{position:absolute;display:flex;align-items:center;justify-content:center;min-width:70px;height:30px;padding:0 12px;border-radius:15px;background:#29414b;color:#fff;font:700 13px Arial,Helvetica,sans-serif;white-space:nowrap}
+
+.reference-hero{position:absolute;left:0;top:0;z-index:1500;pointer-events:none;opacity:0;border-radius:19px;background:#fff;box-shadow:0 10px 26px -14px #183e4359;will-change:transform;mask-image:linear-gradient(90deg,transparent,#000 1.5%,#000 98.5%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 1.5%,#000 98.5%,transparent)}
+
+.reference-ghost{z-index:1499}
+.reference-hero{will-change:transform,opacity}
+
+.camera-links{position:absolute;inset:0;display:block;width:100%;height:100%;z-index:4;pointer-events:none;object-fit:fill}
+
+.reference-deck{position:absolute;inset:0;width:1920px;height:318px;pointer-events:none;z-index:1}
+.reference-axis{z-index:2}
+.reference-accessible{position:absolute;width:1px;height:1px;padding:0;border:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;pointer-events:none}
+
+/* One semantic palette shared by reference and seven-view labels. */
+:root{--origin-input:#A8DCD5;--origin-generated:#F2C39F;--origin-input-ink:#164E48;--origin-generated-ink:#663714}
+.reference-label[data-origin="input"],.camera-origin[data-origin="input"]{background:var(--origin-input);color:var(--origin-input-ink)}
+.reference-label[data-origin="generated"],.camera-origin[data-origin="generated"]{background:var(--origin-generated);color:var(--origin-generated-ink)}
+.camera-origin{position:absolute;left:1380px;top:22px;width:110px;height:32px;display:flex;align-items:center;justify-content:center;box-sizing:border-box;border-radius:16px;font:700 13px Arial,Helvetica,sans-serif;white-space:nowrap}
+.camera-origin[hidden]{display:none}
+
+.reference-strip{pointer-events:none;user-select:none;-webkit-user-select:none}.camera-viewport video{pointer-events:none}
+:root[data-theme=dark] .reference-strip{background:#111b23}:root[data-theme=dark] .reference-axis{background:var(--line)}

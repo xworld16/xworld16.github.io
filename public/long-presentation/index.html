@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.dataset.theme=new URLSearchParams(location.search).get("theme")==="dark"?"night":"day";</script>
+<title>Self Forcing / Connected Self Forcing</title>
+<link rel="stylesheet" href="style.css?v=case-nav-2">
+<script defer src="data.js"></script>
+<script defer src="i18n.js"></script>
+<script defer src="app.js?v=case-nav-2"></script>
+<script defer src="embed.js?v=case-nav-2"></script>
+</head>
+<body data-theme="day">
+<main id="app">
+<nav class="case-nav" aria-label="Choose comparison case">
+        <button id="previous" class="arrow" aria-label="Previous case"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m9.5 3.5-4.5 4.5 4.5 4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <span id="counter" class="counter" aria-live="polite">01 / 03</span>
+        <button id="next" class="arrow" aria-label="Next case"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6.5 3.5 4.5 4.5-4.5 4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </nav>
+<div id="comparison" class="comparison" aria-label="Synchronized SF and CSF comparison">
+<section class="method" aria-label="Self Forcing">
+<h2>Self Forcing</h2>
+<canvas id="sf-main" class="main-image" width="1920" height="960" aria-label="Self Forcing full scene"></canvas>
+<div class="crops"><canvas id="sf-reference" aria-label="Self Forcing initial detail"></canvas><canvas id="sf-current" aria-label="Self Forcing later detail"></canvas></div>
+</section>
+<section class="method" aria-label="Connected Self Forcing">
+<h2>Connected Self Forcing</h2>
+<canvas id="csf-main" class="main-image" width="1920" height="960" aria-label="Connected Self Forcing full scene"></canvas>
+<div class="crops"><canvas id="csf-reference" aria-label="Connected Self Forcing initial detail"></canvas><canvas id="csf-current" aria-label="Connected Self Forcing later detail"></canvas></div>
+</section>
+<canvas id="flight-layer" aria-hidden="true"></canvas>
+</div>
+<div class="bottom-row">
+
+<div class="theme-nav" aria-label="Page appearance"><button id="day" class="active" aria-pressed="true">Day</button><button id="night" aria-pressed="false">Night</button></div>
+</div>
+<p id="status" class="status" role="status"></p>
+</main>
+<div class="sources" aria-hidden="true"><video id="sf-source" muted playsinline preload="auto"></video><video id="csf-source" muted playsinline preload="auto"></video></div>
+</body>
+</html>

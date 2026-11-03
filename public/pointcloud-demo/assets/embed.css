@@ -1,0 +1,43 @@
+/* Share the R2V controls and theme; only the condition area differs. */
+.pointcloud-stage { padding: 18px max(6px, 1.6667%) 14px; background: transparent; container-type: inline-size; }
+.camera-grid { --split: 50%; position: relative; display: grid; grid-template-columns: 1fr 3.14fr 1fr; gap: 1.2%; align-items: center; }
+.camera-rail { display: grid; gap: 6px; min-width: 0; }
+.camera { min-width: 0; position: relative; aspect-ratio: 2; overflow: hidden; border-radius: 8px; background: #080d12; box-shadow: 0 2px 7px #173d4a26; }
+.camera video { width: 100%; height: 100%; object-fit: contain; background: #080d12; }
+.camera-tag, .origin { position: absolute; z-index: 1; display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; height: calc(1em + 10px); border-radius: 999px; padding: 0 8px; font: 700 clamp(6px, .7cqw, 10px)/normal Arial, Helvetica, sans-serif; white-space: nowrap; }
+.camera-tag { top: 6px; left: 6px; color: white; background: #29414b; }
+.origin { top: 6px; }
+.generated-origin { right: 6px; color: #663714; background: #f2c39f; }
+.connections { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; fill: none; stroke: #87b5b4; stroke-width: 1; }
+.camera-rail, .camera-main { z-index: 1; }
+.error[hidden] { display: none; }
+@media(max-width:600px) {
+  .pointcloud-stage { padding-top: 10px; padding-bottom: 8px; }
+  .camera-rail { gap: 4px; }
+  .camera { border-radius: 5px; }
+  .camera-tag, .origin { height: calc(1em + 6px); padding: 0 4px; top: 3px; }
+  .camera-tag { left: 3px; }
+  .generated-origin { right: 3px; }
+}
+
+/* Generated RGB stays on the left; the identically sized condition is revealed on the right. */
+.camera-main { cursor: ew-resize; touch-action: pan-y; user-select: none; }
+.camera-main:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.comparison-condition { position: absolute; inset: 0; clip-path: inset(0 0 0 var(--split)); pointer-events: none; }
+.camera-main .generated-origin { top: auto; bottom: 6px; left: 6px; right: auto; }
+.pointcloud-origin { top: auto; bottom: 6px; right: 6px; background: #a6d6d0; color: #245654; }
+.comparison-divider { position: absolute; z-index: 3; inset: 0 auto 0 var(--split); width: 2px; transform: translateX(-50%); background: #f3f7f9; box-shadow: 0 0 3px #06101880; pointer-events: none; }
+.comparison-knob { position: absolute; top: 50%; left: 50%; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; border: 1px solid #f3f7f9; background: #17232dd9; color: #f3f7f9; transform: translate(-50%,-50%); }
+.comparison-knob svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.camera-main:hover .comparison-knob, .camera-main:focus-visible .comparison-knob { background: #17232df2; }
+@media(max-width:600px) { .comparison-knob { width: 24px; height: 24px; } .comparison-knob svg { width: 16px; height: 16px; } .camera-main .generated-origin, .pointcloud-origin { bottom: 3px; } }
+
+/* Center the visible letterforms, rather than Arial's extra ascender/descender space. */
+.camera-rail .camera-tag-text { display: block; line-height: 1; transform: translateY(.08em); }
+@supports (text-box-trim: trim-both) {
+  .camera-rail .camera-tag-text { text-box-trim: trim-both; text-box-edge: cap alphabetic; transform: none; }
+}
+
+/* The parent sizes this embed to its content; never reserve a scrollbar gutter. */
+html, body { overflow: hidden; scrollbar-width: none; }
+html::-webkit-scrollbar, body::-webkit-scrollbar { display: none; width: 0; height: 0; }

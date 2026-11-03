@@ -1,0 +1,35 @@
+/* Narrative groups: foundations, three advances, then downstream applications. */
+#overview .section-head { display: block; }
+#overview .section-head .lede { margin-top: 18px; font-size: 16px; }
+.overview-applications { grid-column: 1 / -1; padding-top: 24px; border-top: 1px solid var(--line-2); }
+.overview-application-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px 48px; margin-top: 16px; }
+.overview-application-links a { position: relative; padding-right: 26px; }
+.overview-application-links strong { font-size: 18px; font-weight: 600; }
+.overview-application-links p { font-size: 15px; line-height: 1.65; color: var(--text-3); margin-top: 7px; }
+.overview-application-links a > span { position: absolute; right: 0; top: 2px; color: var(--text-3); }
+.overview-application-links a:hover strong { color: var(--accent); }
+.foundation-architecture-title { margin-bottom: 24px; font-size: 24px; font-weight: 600; }
+.application-part + .application-part { margin-top: 64px; padding-top: 32px; border-top: 1px solid var(--line-2); }
+.application-part-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.8fr); align-items: start; gap: 12px 40px; margin-bottom: 28px; }
+.application-part-head h3 { font-size: 26px; font-weight: 600; line-height: 1.4; }
+.application-part-head p { font-size: 16px; color: var(--text-2); line-height: 1.75; }
+.foundation-data { margin-top: 36px; padding-top: 26px; border-top: 1px solid var(--line-2); }
+.foundation-data-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px 32px; margin-bottom: 20px; }
+.foundation-data h3 { font-size: 21px; font-weight: 600; flex-shrink: 0; }
+.foundation-data-head p { max-width: 62ch; font-size: 15px; line-height: 1.75; color: var(--text-2); }
+.foundation-data .stat-row { margin: 0; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.foundation-data .stat-row dt { font-family: var(--font-sans); font-weight: 500; }
+.foundation-data .stat-row dd { font-family: var(--font-sans); }
+.foundation-report { display: inline-block; margin-top: 14px; color: var(--text-3); font-size: 13px; }
+.foundation-report:hover { color: var(--accent); }
+.training-part + .training-part { margin-top: clamp(36px, 5vw, 64px); border-top: 1px solid var(--line-2); padding-top: 28px; }
+.training-part-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.8fr); gap: 12px 40px; margin-bottom: 24px; align-items: start; }
+.training-part-head h3 { font-size: clamp(21px, 2vw, 26px); font-weight: 600; line-height: 1.4; }
+.training-part-head p { font-size: 16px; line-height: 1.75; color: var(--text-2); max-width: 68ch; }
+@media (max-width: 719px) {
+  .overview-application-links { grid-template-columns: 1fr; gap: 24px; }
+  .foundation-data-head { flex-direction: column; gap: 8px; }
+  .foundation-data .stat-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .foundation-data .stat-row > div { padding: 18px 14px; }
+  .training-part-head { grid-template-columns: 1fr; gap: 10px; margin-bottom: 18px; }
+}

@@ -1,0 +1,67 @@
+/* Reading roles: Title Case headings, sentence case prose and controls.
+ * Copy carries the casing; uppercase is reserved for compact section eyebrows.
+ * Preserve technical names such as X-World, VLA, DiT, 3DGS and LiDAR verbatim. */
+body { letter-spacing: 0; }
+.brand-project { font-family: var(--font-display); font-size: clamp(20px, 1.6vw, 24px); font-weight: 400; letter-spacing: -0.02em; gap: 0.45em; }
+.brand-project > span { font-weight: 400; letter-spacing: inherit; }
+.nav-links { font-size: 14px; }
+.nav-links a { letter-spacing: 0; }
+.drawer-nav a { font-size: 16px; }
+.landing-copy h1 { font-size: clamp(44px, 3.6vw, 52px); font-weight: 600; letter-spacing: -0.035em; line-height: 1.15; }
+.landing-copy h1 > span { margin-inline-start: 0; font-weight: inherit; }
+.landing-copy .landing-tagline, .landing-tagline, .hero-subtitle { font-family: var(--font-sans); font-size: clamp(17px, 1.3vw, 19px); font-weight: 400; letter-spacing: 0; line-height: 1.6; }
+html[lang='zh-CN'] .landing-tagline { letter-spacing: 0; }
+.landing-lede, .hero-lede { font-size: 16px; line-height: 1.75; }
+.landing-world-title h2, .landing-intro-head h2, .section-head h2,
+html[lang='zh-CN'] .section-head h2 { font-size: clamp(32px, 3.1vw, 42px); font-weight: 600; letter-spacing: -0.025em; line-height: 1.2; }
+html[lang='zh-CN'] :is(.landing-world-title h2, .section-head h2) { letter-spacing: 0; line-height: 1.35; }
+.sub-h { font-size: clamp(22px, 2vw, 26px); font-weight: 600; line-height: 1.35; letter-spacing: -0.015em; }
+.panel h3, .info-title, .callout h3 { font-size: 22px; font-weight: 600; line-height: 1.4; letter-spacing: -0.01em; }
+.lede { font-size: 18px; line-height: 1.75; max-width: 68ch; }
+.section-head .lede { text-wrap: balance; }
+/* English chapter introductions use the available page width and natural wrapping. */
+html[lang='en'] .section-head { max-width: none; }
+html[lang='en'] .section-head .lede { max-width: none; text-wrap: wrap; }
+html[lang='zh-CN'] .lede { max-width: 42em; line-height: 1.8; }
+/* Let these Chinese chapter introductions follow the full content width. */
+html[lang='zh-CN'] :is(#grounding, #applications) .section-head { max-width: none; }
+html[lang='zh-CN'] :is(#grounding, #applications) .section-head .lede { max-width: none; text-wrap: wrap; }
+.lede em, html[lang='en'] .lede em { font-style: normal; font-weight: 600; }
+.panel p, .dev-strip p { font-size: 16px; line-height: 1.75; }
+.panel p.note, .note, .formula-gloss { font-size: 14px; }
+.eyebrow, .micro-label, .info-h, .mf-kicker, .landing-intro-head > .eyebrow { font-family: var(--font-mono); font-size: 11px; font-weight: 400; letter-spacing: 0.065em; }
+html[lang='zh-CN'] :is(.eyebrow, .info-h) { font-size: 12px; letter-spacing: 0.04em; }
+.formula { font-size: 16px; }
+.formula-term { font-family: var(--font-sans); font-weight: 400; letter-spacing: 0; }
+.route-list a, .ctl-chips li { font-size: 14px; }
+.ctl-chips li { display: grid; grid-template-columns: 22px minmax(0, 1fr); column-gap: 8px; min-width: 0; }
+.ctl-chips li > span { min-width: 0; overflow-wrap: anywhere; }
+.route-groups { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.btn, .landing-primary { font-family: var(--font-sans); font-size: 14px; font-weight: 700; letter-spacing: 0; }
+.tab-label { font-size: 15px; font-weight: 600; letter-spacing: 0; }
+.tab-sub, .tab-idx { font-size: 12px; font-weight: 400; letter-spacing: 0; }
+.stage-title { font-family: var(--font-display); font-size: 15px; font-weight: 500; letter-spacing: 0; }
+.stage-caption, figcaption, .figure-caption { font-family: var(--font-sans); font-size: 13px; line-height: 1.65; letter-spacing: 0; }
+.io dt, .badge { text-transform: none; letter-spacing: 0; }
+.landing-sync { letter-spacing: 0.04em; }
+.mf-heading h3, .tl-detail h4 { font-size: 22px; font-weight: 600; line-height: 1.4; letter-spacing: -0.01em; }
+.mf-sub, .dfig-hint { font-size: 14px; }
+.mf-route-name, .mf-route-text strong, .mf-cond-title, .mf-out-head, .mf-ctrl-text strong, .tl-name { font-family: var(--font-display); font-weight: 500; }
+.mf-layer { white-space: normal; }
+.mf-layer-name { overflow-wrap: anywhere; }
+.mf-core-head h4 { font-size: 20px; font-weight: 600; letter-spacing: -0.01em; }
+.mf-ctrl-head, .mf-explain { letter-spacing: 0; }
+.site-footer { font-family: var(--font-sans); font-size: 13px; letter-spacing: 0; }
+.footer-brand { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.02em; }
+@media (min-width: 900px) and (max-width: 1199px) {
+  .overview-grid .ctl-chips { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 959px) {
+  .landing-copy h1 { font-size: clamp(32px, 8.4vw, 44px); }
+  .landing-copy .landing-tagline { font-size: 17px; }
+  .landing-lede { max-width: 34ch; }
+  .section-head h2, html[lang='zh-CN'] .section-head h2 { font-size: clamp(28px, 5vw, 36px); }
+  .lede { font-size: 17px; }
+  .panel h3, .info-title, .callout h3 { font-size: 20px; }
+  .sub-h { font-size: 22px; }
+}

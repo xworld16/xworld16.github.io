@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Scene-grounded generation from reference observations — XWorld Virtual City Generation.">
+  <title>Arbitrary-View Images to Multi-View Video · XWorld</title>
+  <script>document.documentElement.dataset.theme=new URLSearchParams(location.search).get("theme")==="dark"?"dark":"light";</script>
+  <link rel="stylesheet" href="style.css?v=r2v-fit-frame">
+</head>
+<body data-kind="r2v">
+  <main class="showcase">
+    <div class="topline">
+      <nav class="sample-nav" aria-label="Sample navigation">
+        <button id="prev" class="arrow" aria-label="Previous sample"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m9.5 3.5-4.5 4.5 4.5 4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <span id="counter" class="counter" aria-live="polite">01 / 03</span>
+        <button id="next" class="arrow" aria-label="Next sample"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6.5 3.5 4.5 4.5-4.5 4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </nav>
+    </div>
+    <section class="stage" aria-label="Synchronized seven-view demo">
+      <video id="video" muted playsinline loop preload="auto" disablepictureinpicture></video>
+    </section>
+    <p id="error" class="error" role="status" hidden></p>
+  </main>
+  <script src="data-selected9-frosted.js?v=web-playback"></script>
+  <script src="i18n.js"></script>
+  <script src="app.js?v=deferred-playback"></script>
+  <script src="r2v-reference.js?v=input-label-only"></script>
+  <script src="embed.js?v=r2v-fit-frame"></script>
+</body>
+</html>

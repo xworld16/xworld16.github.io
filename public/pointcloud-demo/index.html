@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Seven synchronized comparisons of generated driving views and their point-cloud conditions.">
+  <title>Point-cloud-conditioned generation · X-World 1.6</title>
+  <link rel="stylesheet" href="../frosted-demo/style.css">
+  <link rel="stylesheet" href="assets/embed.css">
+  <script>document.documentElement.dataset.theme=/^(night|dark)$/.test(new URLSearchParams(location.search).get('theme'))?'dark':'light';</script>
+  <script defer src="assets/scenes.js"></script>
+  <script defer src="assets/embed.js"></script>
+  <script defer src="assets/viewer.js"></script>
+</head>
+<body>
+  <main class="showcase" id="content">
+    <div class="topline">
+      <nav class="sample-nav" aria-label="Sample navigation">
+        <button id="prev" class="arrow" aria-label="Previous scene"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m9.5 3.5-4.5 4.5 4.5 4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <span id="counter" class="counter" aria-live="polite">01 / 03</span>
+        <button id="next" class="arrow" aria-label="Next scene"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6.5 3.5 4.5 4.5-4.5 4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </nav>
+    </div>
+    <section class="stage pointcloud-stage" aria-label="Synchronized point-cloud condition and seven generated views">
+      <div class="camera-grid" id="camera-grid">
+        <svg class="connections" viewBox="0 0 1000 300" preserveAspectRatio="none" aria-hidden="true"><path d="M186 50C195 50 195 150 200 150M186 150H200M186 250C195 250 195 150 200 150M800 150C805 150 805 50 814 50M800 150H814M800 150C805 150 805 250 814 250"/></svg>
+        <div class="camera-rail left">
+          <div class="camera" data-camera="cam0"><video muted playsinline preload="auto" disablepictureinpicture></video><div class="comparison-condition"><video id="condition-cam0" muted playsinline preload="auto" disablepictureinpicture></video></div><span class="comparison-divider" aria-hidden="true"></span><span class="camera-tag"><span class="camera-tag-text">Front-Narrow</span></span></div>
+          <div class="camera" data-camera="cam3"><video muted playsinline preload="auto" disablepictureinpicture></video><div class="comparison-condition"><video id="condition-cam3" muted playsinline preload="auto" disablepictureinpicture></video></div><span class="comparison-divider" aria-hidden="true"></span><span class="camera-tag"><span class="camera-tag-text">Front-Left</span></span></div>
+          <div class="camera" data-camera="cam5"><video muted playsinline preload="auto" disablepictureinpicture></video><div class="comparison-condition"><video id="condition-cam5" muted playsinline preload="auto" disablepictureinpicture></video></div><span class="comparison-divider" aria-hidden="true"></span><span class="camera-tag"><span class="camera-tag-text">Rear-Left</span></span></div>
+        </div>
+        <div id="comparison" class="camera camera-main" data-camera="cam2" role="slider" tabindex="0" aria-label="Drag to compare generated CAM2 and point-cloud render" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50">
+          <video muted playsinline preload="auto" disablepictureinpicture></video>
+          <div class="comparison-condition"><video id="condition-cam2" muted playsinline preload="auto" disablepictureinpicture></video></div>
+          <span class="camera-tag"><span class="camera-tag-text">Front-Fisheye</span></span>
+          <span id="generated-label" class="origin generated-origin">Generated</span>
+          <span id="pointcloud-label" class="origin pointcloud-origin">Point cloud</span>
+          <span class="comparison-divider" aria-hidden="true"><span class="comparison-knob"><svg viewBox="0 0 24 24" fill="none"><path d="M4 12h16M8 8l-4 4 4 4m8-8 4 4-4 4"/></svg></span></span>
+        </div>
+        <div class="camera-rail right">
+          <div class="camera" data-camera="cam7"><video muted playsinline preload="auto" disablepictureinpicture></video><div class="comparison-condition"><video id="condition-cam7" muted playsinline preload="auto" disablepictureinpicture></video></div><span class="comparison-divider" aria-hidden="true"></span><span class="camera-tag"><span class="camera-tag-text">Rear</span></span></div>
+          <div class="camera" data-camera="cam4"><video muted playsinline preload="auto" disablepictureinpicture></video><div class="comparison-condition"><video id="condition-cam4" muted playsinline preload="auto" disablepictureinpicture></video></div><span class="comparison-divider" aria-hidden="true"></span><span class="camera-tag"><span class="camera-tag-text">Front-Right</span></span></div>
+          <div class="camera" data-camera="cam6"><video muted playsinline preload="auto" disablepictureinpicture></video><div class="comparison-condition"><video id="condition-cam6" muted playsinline preload="auto" disablepictureinpicture></video></div><span class="comparison-divider" aria-hidden="true"></span><span class="camera-tag"><span class="camera-tag-text">Rear-Right</span></span></div>
+        </div>
+      </div>
+    </section>
+    <p id="status" class="error" role="status" hidden></p>
+  </main>
+</body>
+</html>

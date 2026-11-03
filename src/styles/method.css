@@ -1,0 +1,5 @@
+/* Preserve the report figure's full composition and native proportions. */
+.method-architecture { margin: 0; }
+.architecture-image { display: block; background: #fff; cursor: zoom-in; border-radius: 8px; }
+.architecture-image img { display: block; width: 100%; height: auto; }
+.architecture-image:focus-visible { outline: 2px solid var(--accent); outline-offset: 6px; }

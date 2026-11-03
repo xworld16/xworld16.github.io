@@ -1,0 +1,18 @@
+{
+  "name": "xworld-1-6-site",
+  "private": true,
+  "version": "1.0.0",
+  "description": "X-World 1.6 research project page (bilingual EN / ZH, static).",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview --port 4173"
+  },
+  "devDependencies": {
+    "vite": "8.3.4"
+  },
+  "dependencies": {
+    "@fontsource-variable/instrument-sans": "^5.3.0"
+  }
+}

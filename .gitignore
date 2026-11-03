@@ -1,0 +1,10 @@
+# Dependencies and generated builds
+/node_modules/
+/dist/
+
+# Local files
+.DS_Store
+*.log
+.env
+.env.*
+!.env.example

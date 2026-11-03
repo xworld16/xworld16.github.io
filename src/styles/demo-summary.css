@@ -1,0 +1,50 @@
+/* Chapter 02: one figure with its case selector beside the introduction. */
+#control { padding-block: clamp(36px, 4vw, 60px) 12px; }
+#control > .container {
+  max-width: 1080px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 18px 32px;
+}
+#control .section-head { margin: 0; }
+#control .section-head .eyebrow { margin-bottom: 8px; }
+#control .section-head .lede { margin-top: 8px; font-size: 16px; text-wrap: wrap; }
+#control .demo { display: contents; }
+#control .tabs {
+  display: flex;
+  gap: clamp(12px, 1.5vw, 22px);
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid var(--line-2);
+  border-radius: 0;
+  background: transparent;
+  overflow: visible;
+}
+#control .tab {
+  flex: 0 1 auto;
+  min-width: 0;
+  min-height: 44px;
+  padding: 6px 2px;
+  place-items: center;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: var(--text-3);
+}
+#control .tab:hover { color: var(--text); }
+#control .tab[aria-selected='true'] { color: var(--accent); box-shadow: inset 0 -2px var(--accent); }
+#control .demo-body { grid-column: 1 / -1; grid-template-columns: minmax(0, 1fr); gap: 0; }
+#control .stage-bar, #control .stage-corner { display: none; }
+#control .stage { border: 0; border-radius: 0; box-shadow: none; }
+#control .stage-viewport { max-height: none; }
+#control .demo-foot { grid-column: 1 / -1; margin: 0; }
+#control .demo-foot:not(:has(.note:not([hidden]))) { display: none; }
+@media (max-width: 819px) {
+  #control > .container { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+  #control .tabs { justify-self: start; }
+}
+
+#long .long-layout { grid-template-columns: minmax(0, 1fr); gap: 0; }
+.demo-summary { margin: 14px 0 0; font-size: 13px; line-height: 1.65; color: var(--text-3); }
+.demo-hint { margin: 0 0 14px; font-size: 13px; line-height: 1.65; color: var(--text-3); }

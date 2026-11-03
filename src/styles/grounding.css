@@ -1,0 +1,162 @@
+/* Stack categories vertically; show three full demos within each desktop row. */
+#grounding-demo { --grounding-gap: clamp(20px, 2.5vw, 36px); display: grid; gap: clamp(40px, 5vw, 64px); }
+.grounding-group { min-width: 0; }
+.grounding-group-head { display: grid; align-items: start; gap: 12px var(--grounding-gap); margin-bottom: 22px; padding-top: 20px; border-top: 1px solid var(--line-2); }
+.grounding-group h3 { margin: 0; font-size: clamp(21px, 1.8vw, 24px); font-weight: 600; line-height: 1.4; }
+.grounding-group-summary { max-width: 70ch; font-size: 16px; line-height: 1.75; color: var(--text-2); }
+.grounding-videos { display: grid; align-items: start; gap: var(--grounding-gap); }
+.grounding-demo { min-width: 0; }
+.grounding-videos .stage { width: 100%; border: 0; box-shadow: none; background: transparent; }
+.grounding-videos .stage-bar, .grounding-videos .stage-corner { display: none; }
+.grounding-videos .stage-viewport { max-height: none; }
+.grounding-footnote { width: 80%; max-width: calc(var(--maxw) * .8); margin: 14px auto 0; font-size: 13px; line-height: 1.65; color: var(--text-3); }
+@media (max-width: 959px) { .grounding-footnote { width: 100%; } }
+@media (min-width: 960px) {
+  .grounding-group-head { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .grounding-group-summary { grid-column: 2 / -1; }
+  .grounding-videos { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* Five scene examples, each with one main camera and six tightly spaced surround views. */
+.gs-gallery, .pointcloud-demo { width: 80%; max-width: calc(var(--maxw) * .8); min-width: 0; margin-inline: auto; }
+.gs-gallery { --gs-nav-size: 44px; --gs-nav-gap: 12px; position: relative; isolation: isolate; }
+.gs-gallery:focus-visible { outline: 2px solid var(--accent-line); outline-offset: 8px; border-radius: var(--radius); }
+.gs-source { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.gs-stage { position: relative; }
+/* The reference montage above leaves 32 native pixels on each side of its 1920px canvas. */
+@media (min-width: 960px) { .gs-stage { margin-inline: calc(100% / 60); } }
+.gs-scene { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 3.2fr) minmax(0, 1fr); align-items: center; gap: clamp(6px, 1.1vw, 12px); }
+.gs-scene::before { content: ''; position: absolute; z-index: -1; inset: -12% -4%; background: radial-gradient(ellipse at center, var(--bg-2), transparent 72%); pointer-events: none; }
+.gs-rail { display: grid; gap: clamp(6px, .8vw, 10px); min-width: 0; grid-row: 1; }
+.gs-rail-left { grid-column: 1; }
+.gs-rail-right { grid-column: 3; }
+.gs-view { position: relative; z-index: 1; min-width: 0; aspect-ratio: 2; overflow: hidden; border-radius: var(--radius); background: #080d12; box-shadow: 0 1px 0 var(--line), 0 12px 30px #173d4a14; }
+.gs-view-main { --gs-split: 50%; grid-column: 2; grid-row: 1; cursor: ew-resize; touch-action: pan-y; user-select: none; }
+.gs-view-main:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.gs-view > img, .gs-view > canvas, .gs-comparison > img, .gs-comparison > canvas { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
+.gs-view > canvas, .gs-comparison > canvas { opacity: 0; }
+.gs-gallery.has-frames .gs-view > canvas, .gs-gallery.has-frames .gs-comparison > canvas { opacity: 1; }
+.gs-comparison { position: absolute; inset: 0; clip-path: inset(0 calc(100% - var(--gs-split)) 0 0); pointer-events: none; }
+.gs-camera-label, .gs-compare-labels span { display: inline-flex; align-items: center; justify-content: center; min-width: max(32px, calc(70px * var(--gs-label-scale, .55))); height: max(12px, calc(30px * var(--gs-label-scale, .55))); padding: 0 max(4px, calc(12px * var(--gs-label-scale, .55))); border-radius: 999px; background: #29414b; color: #fff; font: 700 max(6px, calc(13px * var(--gs-label-scale, .55))) Arial, Helvetica, sans-serif; line-height: 1; white-space: nowrap; pointer-events: none; }
+.gs-camera-label { position: absolute; z-index: 3; top: max(4px, calc(11px * var(--gs-label-scale, .55))); left: max(4px, calc(11px * var(--gs-label-scale, .55))); }
+.gs-compare-labels { position: absolute; z-index: 3; inset: auto max(4px, calc(11px * var(--gs-label-scale, .55))) max(4px, calc(11px * var(--gs-label-scale, .55))); display: flex; justify-content: space-between; pointer-events: none; }
+.gs-compare-line { position: absolute; z-index: 4; top: 0; bottom: 0; left: var(--gs-split); width: 2px; background: #f3f7f9; box-shadow: 0 0 3px #06101880; transform: translateX(-50%); pointer-events: none; }
+.gs-compare-knob { position: absolute; top: 50%; left: 50%; display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid #f3f7f9; border-radius: 50%; background: #17232dd9; color: #f3f7f9; transform: translate(-50%, -50%); transition: background var(--dur); }
+.gs-compare-knob svg { width: 20px; height: 20px; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.gs-view-main:hover .gs-compare-knob, .gs-view-main.is-comparing .gs-compare-knob { background: #17232df2; }
+.gs-connections { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.gs-connections path { fill: none; stroke: var(--accent-line); stroke-width: 1; }
+.gs-demo-status { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.gs-gallery .gs-nav { width: var(--gs-nav-size); background: rgba(143, 157, 166, .045); border-color: rgba(143, 157, 166, .1); color: var(--text-3); backdrop-filter: none; }
+.gs-gallery .gs-nav svg { filter: none; stroke-width: 1.5; }
+.gs-gallery .gs-nav:hover { background: rgba(143, 157, 166, .1); border-color: rgba(143, 157, 166, .2); color: var(--text); }
+.gs-gallery .gs-nav:focus-visible { outline-color: var(--accent); }
+.gs-nav-prev { left: calc(0px - var(--gs-nav-size) - var(--gs-nav-gap)); }
+.gs-nav-next { right: calc(0px - var(--gs-nav-size) - var(--gs-nav-gap)); }
+.gs-error { position: absolute; z-index: 3; inset: 20%; display: grid; place-items: center; padding: 12px; background: #071018df; color: #eef6f8; font-size: 12px; text-align: center; border-radius: var(--radius); }
+.gs-error[hidden] { display: none; }
+@media (max-width: 959px) {
+  .gs-gallery, .pointcloud-demo { width: calc(100% - 88px); }
+  .gs-gallery { --gs-nav-size: 32px; --gs-nav-gap: 8px; }
+  .gs-gallery .gs-nav { height: 44px; }
+}
+@media (max-width: 600px) {
+  .gs-scene { gap: 5px; grid-template-columns: minmax(0, 1fr) minmax(0, 3.6fr) minmax(0, 1fr); }
+  .gs-rail { gap: 5px; }
+  .gs-gallery, .pointcloud-demo { width: calc(100% - 72px); }
+  .gs-gallery { --gs-nav-size: 28px; --gs-nav-gap: 6px; }
+  .gs-gallery .gs-nav { height: 36px; }
+  .gs-gallery .gs-nav svg { width: 18px; height: 18px; }
+  .gs-compare-knob { width: 24px; height: 24px; }
+  .gs-compare-knob svg { width: 16px; height: 16px; }
+}
+
+/* Isolate the complete point-cloud viewer while keeping it aligned with sibling demos. */
+.pointcloud-frame { display: block; width: 100%; height: 380px; border: 0; background: transparent; }
+@media (max-width: 959px) { .pointcloud-demo { width: 100%; } .pointcloud-frame { height: 300px; } }
+@media (max-width: 600px) { .pointcloud-frame { height: 180px; } }
+
+/* Long-horizon clips retain their independent carousel. */
+.media-carousel { width: 100%; min-width: 0; margin-inline: auto; }
+.media-carousel-main { display: grid; gap: 20px; min-width: 0; }
+.media-carousel h3 { text-align: center; font-size: clamp(21px, 1.8vw, 24px); font-weight: 600; line-height: 1.4; }
+.media-carousel-frame { position: relative; width: min(100%, calc(66vh * var(--clip-ratio, 1.777778))); margin-inline: auto; }
+.media-carousel-player { min-width: 0; overflow: hidden; border-radius: var(--radius); }
+.media-carousel-status { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.media-carousel .stage { width: 100%; border: 0; box-shadow: none; background: transparent; }
+.media-carousel .stage-bar, .media-carousel .stage-corner { display: none; }
+.media-carousel .stage-viewport { max-height: none; }
+.media-carousel-nav {
+  position: absolute;
+  z-index: 4;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 52px;
+  border: 1px solid rgba(241, 245, 247, .24);
+  border-radius: var(--radius);
+  background: rgba(201, 211, 218, .18);
+  color: rgba(245, 247, 248, .8);
+  backdrop-filter: blur(4px);
+  transition: background var(--dur), color var(--dur);
+}
+.media-carousel-prev { left: 8px; }
+.media-carousel-next { right: 8px; }
+.media-carousel-nav svg { width: 24px; height: 24px; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; filter: drop-shadow(0 1px 2px #0008); pointer-events: none; }
+.media-carousel-nav:hover { background: rgba(201, 211, 218, .34); color: #fff; }
+.media-carousel-nav:focus-visible { outline: 2px solid #f5f7f8; outline-offset: 2px; }
+/* Full-width copy fits the Chinese line and the two concise English sentences on desktop. */
+#long-stage { width: 100%; min-width: 0; }
+.long-presentation { position: relative; }
+.long-presentation-frame { display: block; width: 100%; height: 560px; min-height: 240px; border: 0; background: transparent; }
+.long-presentation-loading { color: var(--text-3); font-size: 13px; text-align: center; margin: 12px 0; }
+#long-stage h3 { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+#long-stage .media-carousel-frame { width: 100%; }
+#long .section-head { max-width: none; }
+#long .lede { max-width: none; text-wrap: wrap; }
+#long .lede > span { display: block; }
+.long-layout { display: grid; align-items: start; gap: clamp(20px, 2.5vw, 36px); }
+.long-methods { min-width: 0; margin-top: 0; gap: 12px; }
+.long-methods li:not(.method-links-cta) { display: grid; align-content: center; justify-items: center; gap: 8px; padding: clamp(12px, 1vw, 16px); text-align: center; }
+.long-method-head { display: flex; align-items: center; justify-content: center; gap: 12px; }
+.long-method-head h4 { margin: 0; }
+.long-methods p > span { display: block; }
+@media (min-width: 1024px) {
+  .long-layout { grid-template-columns: minmax(0, 7fr) minmax(0, 2fr); gap: clamp(16px, 2vw, 28px); }
+  .long-method-head { flex-direction: column; gap: 8px; }
+  .long-method-head h4 { font-size: clamp(14px, 1.2vw, 16px); line-height: 1.45; }
+  .long-methods li:not(.method-links-cta) { padding: 14px 12px; gap: 10px; }
+  .long-methods p { font-size: 13px; line-height: 1.7; }
+  .long-methods { align-self: stretch; grid-template-rows: repeat(3, minmax(0, 1fr)); }
+}
+@media (prefers-reduced-motion: reduce) { .media-carousel-nav { transition: none; } }
+
+/* Reference-image and dashcam demos share the width of the other grounded viewers. */
+.frosted-demo{width:80%;max-width:calc(var(--maxw) * .8);min-width:0;margin-inline:auto}
+.frosted-frame{display:block;width:100%;height:550px;border:0;background:transparent}
+.frosted-loading{font-size:13px;color:var(--text-3);text-align:center;margin-top:12px}
+#dashcam .demo-body{grid-template-columns:minmax(0,1fr)}
+@media(max-width:959px){.frosted-demo{width:100%}.frosted-frame{height:400px}}
+@media(max-width:600px){.frosted-frame{height:240px}}
+
+/* Match the point-cloud camera deck and its top-right sample navigation. */
+.gs-stage { margin-inline: 0; padding: 63px max(6px, 1.6667%) 14px; }
+.gs-scene { grid-template-columns: minmax(0, 1fr) minmax(0, 3.14fr) minmax(0, 1fr); gap: 1.2%; }
+.gs-scene::before { display: none; }
+.gs-rail { gap: 6px; }
+.gs-view { border-radius: 8px; box-shadow: none; }
+.gs-gallery .gs-nav { position: absolute; top: 0; bottom: auto; transform: none; width: 33px; height: 33px; border-radius: 50%; background: transparent; border: 1px solid var(--line); color: var(--text-3); }
+.gs-gallery .gs-nav svg { width: 16px; height: 16px; }
+.gs-nav-prev { left: auto; right: 119px; }
+.gs-nav-next { right: 0; }
+.gs-demo-status { position: absolute; top: 0; right: 45px; width: 62px; height: 33px; display: grid; place-items: center; margin: 0; padding: 0; overflow: visible; clip-path: none; color: var(--text-3); font-size: 12px; font-variant-numeric: tabular-nums; letter-spacing: 1px; white-space: nowrap; }
+.gs-compare-labels span:first-child { background: #a6d6d0; color: #245654; }
+.gs-compare-labels span:last-child { background: #f2c39f; color: #663714; }
+@media (max-width: 959px) { .gs-gallery { width: 100%; } }
+@media (max-width: 600px) {
+  .gs-stage { padding-top: 49px; padding-bottom: 8px; }
+  .gs-rail { gap: 4px; }
+  .gs-view { border-radius: 5px; }
+}

@@ -1,0 +1,278 @@
+/* A single driving scene opens out into seven synchronized viewpoints. */
+.landing {
+  position: relative;
+  height: 200vh;
+  background: #06090d;
+  isolation: isolate;
+}
+.landing-pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  --copy-opacity: 1;
+  --copy-offset: 0px;
+  --world-opacity: 0;
+  --shade-opacity: 1;
+}
+.landing-pin::after {
+  content: '';
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 46% 42% at 76% 72%, rgba(42, 116, 161, 0.22), transparent 100%),
+    radial-gradient(ellipse 34% 50% at 6% 34%, rgba(39, 75, 143, 0.19), transparent 100%),
+    linear-gradient(180deg, rgba(4, 6, 12, 0.38), rgba(5, 7, 14, 0.2) 43%, rgba(3, 5, 10, 0.52));
+  opacity: var(--shade-opacity);
+}
+.landing-source {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+.landing-ambient {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 55% 48% at 50% 58%, #15242d 0%, #090f15 52%, transparent 100%);
+}
+.landing-ambient::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(#899eae08 1px, transparent 1px), linear-gradient(90deg, #899eae08 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse 65% 55% at 50% 55%, black, transparent);
+}
+.landing-views { position: absolute; inset: 0; }
+.landing-view {
+  position: absolute;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #0a1118;
+  box-shadow: 0 0 0 1px #d8efff24, 0 16px 50px #0006;
+  will-change: left, top, width, height;
+}
+.landing-view > img, .landing-view > canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.landing-view > canvas { opacity: 0; }
+.has-frames .landing-view-main > canvas,
+.has-side-frames .landing-view > canvas { opacity: 1; }
+.landing-view-main { z-index: 3; border-radius: var(--main-radius, 0px); box-shadow: none; }
+.landing-pin.is-unfolding .landing-view-main { box-shadow: 0 0 0 1px #d8efff24, 0 16px 50px #0006; }
+.landing-view-main::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #03070b12 0%, #03070b45 55%, #03070b70 100%);
+  opacity: var(--shade-opacity);
+}
+.landing-view-left, .landing-view-right { z-index: 2; opacity: 0; }
+.landing-status-dot, .landing-kicker > span:first-child {
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #a4ecdd;
+  box-shadow: 0 0 12px #a4ecdd88;
+}
+.landing-veil {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  top: calc(50% + 12px);
+  width: min(100%, 1180px);
+  height: min(80%, 640px);
+  transform: translate(-50%, calc(-50% + var(--copy-offset)));
+  opacity: var(--copy-opacity);
+  pointer-events: none;
+  background: rgba(3, 6, 10, 0.5);
+  backdrop-filter: blur(6px);
+  mask-image: radial-gradient(closest-side, #000 32%, rgba(0, 0, 0, 0.55) 62%, transparent 100%);
+}
+.landing-copy {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  top: calc(50% + 12px);
+  bottom: auto;
+  opacity: var(--copy-opacity);
+  transform: translate(-50%, calc(-50% + var(--copy-offset)));
+  width: min(90%, 820px);
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 2px 22px rgba(2, 6, 10, 0.6);
+}
+.landing-kicker {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font: 11px var(--font-mono);
+  letter-spacing: 0.16em;
+  color: #e4eef0;
+}
+.landing-copy .landing-kicker { justify-content: center; }
+.landing-copy h1 {
+  margin-top: 22px;
+  font-size: clamp(58px, 6.2vw, 112px);
+  font-weight: var(--weight-hero);
+  line-height: 1;
+  letter-spacing: -0.045em;
+  color: #f5f7f6;
+  white-space: nowrap;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3), 0 6px 36px rgba(2, 6, 10, 0.65);
+}
+
+.landing-copy h1 > span {
+  display: inline-block;
+  margin-inline-start: 0.035em;
+  font-weight: var(--weight-heading);
+  color: #c8f2f5;
+}
+.landing-tagline {
+  margin-top: 22px;
+  font-size: clamp(21px, 2.05vw, 34px);
+  line-height: 1.3;
+  letter-spacing: -0.025em;
+  font-weight: 400;
+  color: #f1f5f3;
+}
+.landing-lede {
+  margin: 14px auto 0;
+  max-width: 54ch;
+  font-size: clamp(13px, 1vw, 16px);
+  line-height: 1.6;
+  color: #dbe6e8;
+}
+.landing-actions { display: flex; align-items: center; justify-content: center; gap: 30px; margin-top: 30px; }
+.landing-primary {
+  gap: 32px;
+  border-radius: 4px;
+  background: #e8f4ef;
+  border: 1px solid #e8f4ef;
+  color: #11201f;
+  padding: 14px 20px;
+  font-weight: var(--weight-body);
+  font-size: 14px;
+  text-shadow: none;
+}
+.landing-primary:hover { background: #bdebe3; border-color: #bdebe3; transform: translateY(-2px); }
+.landing-primary > span:last-child { font-size: 20px; font-weight: 400; line-height: 1; }
+.landing-report { display: inline-flex; align-items: center; gap: 19px; font-size: 13px; color: #eef4f4; }
+.landing-report > span:first-child { text-decoration: underline 1px rgba(238, 244, 244, 0.45); text-underline-offset: 6px; }
+.landing-report:hover { color: var(--accent); }
+.landing-report:hover > span:first-child { text-decoration-color: currentColor; }
+.landing-scene-label {
+  position: absolute;
+  z-index: 4;
+  top: calc(var(--header-h) + 34px);
+  left: clamp(48px, 5.3vw, 112px);
+  right: clamp(48px, 5.3vw, 112px);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font: 10px var(--font-mono);
+  letter-spacing: 0.12em;
+  color: #e2ecec;
+  opacity: var(--copy-opacity);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.75), 0 0 2px rgba(0, 0, 0, 0.5);
+}
+.landing-world-title {
+  position: absolute;
+  z-index: 4;
+  top: calc(var(--header-h) + clamp(24px, 4.5vh, 48px));
+  left: 24px;
+  right: 24px;
+  text-align: center;
+  opacity: var(--world-opacity);
+  pointer-events: none;
+}
+.landing-world-title .landing-kicker { justify-content: center; color: #9bacb5; font-size: 10px; }
+.landing-world-title h2 { margin-top: 12px; font-size: clamp(28px, 2.6vw, 44px); letter-spacing: -0.035em; line-height: 1.15; font-weight: var(--weight-heading); }
+.landing-world-lede { margin-top: 10px; font-size: 15px; color: #aab9c1; }
+.landing-world-caption {
+  position: absolute;
+  z-index: 4;
+  top: var(--caption-top, 75%);
+  left: 20%;
+  right: 20%;
+  text-align: center;
+  opacity: var(--world-opacity);
+}
+.landing-sync { display: flex; justify-content: center; align-items: center; gap: 9px; color: #b8d9d5; font: 11px var(--font-mono); letter-spacing: 0.12em; }
+.landing-world-caption p { margin-top: 8px; color: #a9b8c0; font-size: 14px; }
+.landing-demo-link { margin-top: 12px; display: inline-flex; align-items: center; gap: 20px; font-size: 13px; color: #e6eeed; border-bottom: 1px solid #6f939b66; padding-bottom: 6px; }
+.landing-demo-link:hover { color: var(--accent); border-color: var(--accent); }
+.landing-connections { position: absolute; inset: 0; width: 100%; height: 100%; opacity: var(--world-opacity); }
+.landing-connections path { fill: none; stroke: #78a7ad66; stroke-width: 1.6; }
+.landing-bottom {
+  position: absolute;
+  z-index: 6;
+  bottom: 22px;
+  left: clamp(48px, 5.3vw, 112px);
+  right: clamp(48px, 5.3vw, 112px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.landing-scroll { display: inline-flex; align-items: center; gap: 13px; font-size: 11px; color: #c9d5d7; letter-spacing: 0.04em; opacity: calc(1 - var(--world-opacity)); }
+.landing-scroll-line { height: 1px; width: 28px; background: #94b4b7; }
+.landing-scroll:hover { color: white; }
+.landing-pin:not(.is-unfolding) .landing-scroll { text-shadow: 0 1px 8px rgba(0, 0, 0, 0.75), 0 0 2px rgba(0, 0, 0, 0.5); }
+.landing-error { position: absolute; z-index: 7; bottom: 84px; right: 48px; max-width: 360px; background: #081015dd; padding: 12px 16px; color: #d4e1e4; font-size: 12px; border-radius: 5px; }
+.landing-intro { padding: clamp(64px, 7vw, 96px) 0 32px; background: var(--bg-0); }
+.landing-intro-head { display: grid; grid-template-columns: 1fr; gap: 16px; align-items: start; }
+.landing-intro-head > .eyebrow { grid-column: 1 / -1; margin-bottom: 6px; font-size: 10px; letter-spacing: 0.14em; }
+.landing-intro-head h2 { font-size: clamp(28px, 3vw, 44px); line-height: 1.2; font-weight: var(--weight-heading); letter-spacing: -0.025em; }
+.landing-intro .dev-strip { margin-top: 46px; border-radius: 4px; }
+.landing-intro .ref-notice { font-size: 11px; opacity: 0.75; }
+@media (min-width: 960px) and (max-width: 1552px) {
+  .landing-intro .dev-strip { margin-top: clamp(32px, 2.6vw, 40px); }
+}
+
+html[lang='zh-CN'] .landing-tagline { letter-spacing: 0.025em; }
+html[lang='zh-CN'] .landing-world-title h2 { letter-spacing: 0.015em; }
+/* Simple fallback only; the cinematic expansion is designed for desktop. */
+@media (max-width: 959px) {
+  .landing { height: 100svh; min-height: 640px; }
+  .landing-copy { left: 50%; right: auto; top: 46%; bottom: auto; width: calc(100% - 40px); max-width: none; }
+  .landing-veil { top: 46%; width: 100%; height: min(72%, 560px); }
+  .landing-copy h1 { font-size: clamp(44px, 10.8vw, 92px); }
+  .landing-tagline { font-size: clamp(23px, 4vw, 32px); }
+  .landing-lede { max-width: 35ch; }
+  .landing-kicker { justify-content: center; font-size: 9px; letter-spacing: 0.06em; }
+  .landing-scene-label { left: 32px; right: 32px; }
+  .landing-bottom { left: 32px; right: 32px; }
+  .landing-view-left, .landing-view-right, .landing-world-title, .landing-world-caption, .landing-connections { display: none; }
+  .landing-actions { gap: 20px; }
+  .landing-primary { padding: 12px 16px; gap: 16px; }
+  .landing-scroll-line { display: none; }
+  .landing-intro-head { grid-template-columns: 1fr; gap: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .landing-view { will-change: auto; }
+}
+
+@media (min-width: 960px) and (max-height: 720px) {
+  .landing-copy h1 { font-size: clamp(56px, 6vw, 88px); }
+  .landing-copy .landing-tagline { margin-top: 16px; font-size: 26px; }
+  .landing-copy .landing-actions { margin-top: 24px; }
+  .landing-world-title h2 { margin-top: 8px; font-size: 30px; }
+  .landing-world-lede { margin-top: 8px; font-size: 13px; }
+  .landing-world-caption p { display: none; }
+}
+@media (min-width: 960px) and (max-height: 560px) {
+  .landing-world-title { top: calc(var(--header-h) + 18px); }
+  .landing-world-title h2 { font-size: 26px; }
+  .landing-world-lede { display: none; }
+}
+
+.landing-view-left > img,.landing-view-left > canvas,.landing-view-right > img,.landing-view-right > canvas{object-fit:contain}
