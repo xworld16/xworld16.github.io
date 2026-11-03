@@ -6,8 +6,10 @@ const copy = {
   guide: text('这组对照展示了闭环 RL 训练带来的一项变化：当其他车辆打断原本的驾驶动作时，VLA 2.0 能像人类驾驶员一样先退让，再继续完成原来的动作。',
     'This comparison illustrates one way closed-loop RL changes VLA 2.0’s behavior. When another vehicle interrupts a maneuver, the trained model responds more like a human driver: it yields, then resumes the maneuver.'),
   caseLabel: text('案例 · 让行后继续变道', 'Example · Resuming a lane change after yielding'),
-  caseGuide: text('自车向右变道时，后方来车突然加塞。下排模型先让对方通过，随后继续向右，完成原定的变道。',
-    'As the ego vehicle changes lanes to the right, a vehicle cuts in from behind. The model in the lower row lets it pass, then continues into the right lane to complete the original lane change.'),
+  caseGuide: text('自车向右变道时，后方来车突然加塞。下排模型先让对方通过，随后',
+    'As the ego vehicle changes lanes to the right, a vehicle cuts in from behind. The model in the lower row lets it pass, then '),
+  caseOutcome: text('继续向右，完成原定的变道。',
+    'continues into the right lane to complete the original lane change.'),
   baseline: text('未经闭环 RL 训练的 VLA 2.0', 'VLA 2.0 without closed-loop RL training'),
   trained: text('经过闭环 RL 训练的 VLA 2.0', 'VLA 2.0 with closed-loop RL training'),
   paths: text('BEV 视角', 'Bird’s-eye view (BEV)'),
@@ -37,7 +39,7 @@ export function createInteractionCases(host) {
       <h4 data-ic-copy="title"></h4>
       <p data-ic-copy="guide"></p>
     </header>
-    <p class="ic-case"><strong data-ic-copy="caseLabel"></strong> <span data-ic-copy="caseGuide"></span></p>
+    <p class="ic-case"><strong data-ic-copy="caseLabel"></strong> <span data-ic-copy="caseGuide"></span><strong data-ic-copy="caseOutcome"></strong></p>
     <div class="ic-stage">
       ${['baseline', 'trained'].map(model => `<section class="ic-model">
         <h5 class="ic-${model}" data-ic-copy="${model}"></h5>
