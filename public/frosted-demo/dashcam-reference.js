@@ -63,6 +63,7 @@
     pump();resize();
   }
   function animate(now){
+    window.FROSTED_API.drawCameras();
     const dt=Math.min(50,last?now-last:16);last=now;
     pump();
     const loaded=cards.filter(c=>c.texture);

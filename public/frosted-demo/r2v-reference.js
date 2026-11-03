@@ -10,6 +10,7 @@
   images=next.reference_positions.map((frame,i)=>{const image=new Image();image.decoding='async';image.src=`frosted/refs/r2v_${next.id.replace(/^sample_/,'')}/${String(i).padStart(3,'0')}.jpg`;return{image,frame};});
  }
  function draw(){
+  window.FROSTED_API.drawCameras();
   load();ctx.fillStyle=document.documentElement.dataset.theme==='dark'?'#111b23':'#fff';ctx.fillRect(0,0,1920,340);
   if(demo){
    const t=video.currentTime*demo.fps,first=demo.reference_positions[0],last=demo.reference_positions.at(-1),progress=Math.max(0,Math.min(1,(t-first)/(last-first)));

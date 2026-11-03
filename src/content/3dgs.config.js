@@ -1,15 +1,15 @@
 /** Seven generated cameras and the main 3DGS render share one packed playback clock. */
 export const gsViews = [
   { camera: 0, side: 'main', row: 0, crop: [0, 0, 1024, 512] },
-  { camera: 2, side: 'left', row: 0, crop: [1024, 0, 1024, 512] },
-  { camera: 3, side: 'left', row: 1, crop: [0, 512, 512, 416] },
-  { camera: 4, side: 'right', row: 1, crop: [512, 512, 512, 416] },
-  { camera: 5, side: 'left', row: 2, crop: [1024, 512, 512, 416] },
-  { camera: 6, side: 'right', row: 2, crop: [1536, 512, 512, 416] },
-  { camera: 7, side: 'right', row: 0, crop: [0, 928, 896, 448] },
+  { camera: 2, side: 'left', row: 0, crop: [0, 512, 320, 160] },
+  { camera: 3, side: 'left', row: 1, crop: [320, 512, 320, 260] },
+  { camera: 4, side: 'right', row: 1, crop: [640, 512, 320, 260] },
+  { camera: 5, side: 'left', row: 2, crop: [960, 512, 320, 260] },
+  { camera: 6, side: 'right', row: 2, crop: [1280, 512, 320, 260] },
+  { camera: 7, side: 'right', row: 0, crop: [1600, 512, 320, 160] },
 ];
 
-export const gsComparison = { crop: [896, 928, 1024, 512] };
+export const gsComparison = { crop: [1024, 0, 1024, 512] };
 
 export const gsDemos = [
   ['demo-01', 'eval154__c-2caed5cb-a096-3020-a3ef-b9a482e8043e'],

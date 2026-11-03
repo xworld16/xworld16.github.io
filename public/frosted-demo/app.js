@@ -6,6 +6,31 @@
   let active=window.parent===window&&!document.hidden,index=0,errorKey='',pendingDemo=null;
   const viewport=document.createElement('div');viewport.className='camera-viewport';
   stage.insertBefore(viewport,video);viewport.append(video);
+ // The center strip retains its native pixels. The two side strips are
+ // encoded at two-thirds size and drawn back into the original layout.
+ const deck = document.createElement('canvas');
+ deck.width = 1920;
+ deck.height = 588;
+ deck.className = 'camera-deck';
+ viewport.append(deck);
+ const deckContext = deck.getContext('2d');
+ const strips = [
+   [0, 0, 1104, 588, 408, 0, 1104, 588],
+   [1104, 0, 272, 392, 0, 0, 408, 588],
+   [1376, 0, 272, 392, 1512, 0, 408, 588],
+ ];
+ let lastPoster = '', lastTime = -1;
+ function drawCameras() {
+   if (video.poster !== lastPoster) {
+     lastPoster = video.poster;
+     deck.style.backgroundImage = 'url("' + lastPoster + '")';
+     deckContext.clearRect(0, 0, deck.width, deck.height);
+     lastTime = -1;
+   }
+   if (video.readyState < 2 || video.currentTime === lastTime) return;
+   for (const strip of strips) deckContext.drawImage(video, ...strip);
+   lastTime = video.currentTime;
+ }
   const labels=document.createElement('div');labels.className='camera-label-plane';
   for(const [id,x,y] of [['cam0',32,12],['cam2',408,12],['cam3',32,200],['cam4',1536,200],['cam5',32,388],['cam6',1536,388],['cam7',1536,12]]){
     const badge=document.createElement('span');badge.className='camera-name';badge.dataset.camera=id;
@@ -48,6 +73,6 @@
   });
   video.addEventListener('loadeddata',()=>{setError('');updatePlayback();});
   video.addEventListener('error',()=>setError('videoError'));
-  window.FROSTED_API={setActive(next){active=next;updatePlayback();},refreshText};
+  window.FROSTED_API={setActive(next){active=next;updatePlayback();},refreshText,drawCameras};
   selectSample(0);resize();
 })();
