@@ -24,10 +24,9 @@ export const site = {
     arxiv: 'https://arxiv.org/abs/2611.00596',
     video: null,
   },
-  // arXiv BibTeX, with XPeng retained as a group author and its separator colon omitted.
-  bibtex: `@misc{xpeng2026xworld16buildingcontrollable,
+  bibtex: `@misc{gwmteam2026xworld16buildingcontrollable,
       title={X-World 1.6: Building Controllable Virtual Cities with World Models},
-      author={{XPeng} and Boyang Wang and Boyi Sun and Chaoda Zheng and Dongbin Zhang and Guangfeng Jiang and Hanlong Chen and Hongbin Lin and Jianlei Zheng and Jinhao Deng and Kai Yang and Kangjie Chen and Linkun Xu and Minqi Wang and Puyi Wang and Rongliang Cheng and Ruixin Liu and Shijia Chen and Shuang Deng and Sijia Chen and Sin Wai Choo and Tianyuan Xie and Xiangyu Li and Xianming Liu and Xingjie Liu and Xinlong Zheng and Xuejie Lv and Xuezhi Yang and Yi Guo and Yixiao Zeng and Yu Zhang and Yuecheng Ma and Yuhao Wang and Yuqi Zhang and Yuxin Peng},
+      author={GWM Team and Boyang Wang and Boyi Sun and Chaoda Zheng and Dongbin Zhang and Guangfeng Jiang and Hanlong Chen and Hongbin Lin and Jianlei Zheng and Jinhao Deng and Kai Yang and Kangjie Chen and Linkun Xu and Minqi Wang and Puyi Wang and Rongliang Cheng and Ruixin Liu and Shijia Chen and Shuang Deng and Sijia Chen and Sin Wai Choo and Tenglong Gu and Tianyuan Xie and Xiangyu Li and Xianming Liu and Xingjie Liu and Xinlong Zheng and Xuejie Lv and Xuezhi Yang and Yi Guo and Yixiao Zeng and Yu Zhang and Yuecheng Ma and Yuhao Wang and Yuqi Zhang and Yuxin Peng},
       year={2026},
       eprint={2611.00596},
       archivePrefix={arXiv},
